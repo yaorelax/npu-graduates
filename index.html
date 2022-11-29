@@ -1,0 +1,635 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>就业去向查询</title>
+        <script src="jquery/jquery-1.12.4.js"></script>
+        <script src="jquery/jquery-chained.js"></script>
+        <style type="text/css">
+            body {
+                background-color: #BFBFBE;
+            }
+            #select-block {
+                font: 130% "微软雅黑";
+                position: absolute;
+                left: 50%;
+                top: 20%;
+                margin-left: -204.615px;
+                margin-top: -76px;
+                border: 3px double;
+                border-style: double;
+                padding: 2px 4px;
+            }
+            select, input {
+                font: 80% "微软雅黑";
+            }
+        </style>
+    </head>
+    <body>
+        <h1>就业去向查询</h1>
+        
+        <div id="select-block">
+        
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;一览
+        <br><br>
+        年份：
+        <select id="id_year" name="year">
+            <option value="" selected="selected">------------------------------------------</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+        </select>
+        <br>
+        学历：
+        <select id="id_school" name="school">
+            <option value="" selected="selected">------------------------------------------</option>
+            <option value="1">本科</option>
+            <option value="2">硕士</option>
+            <option value="3">博士</option>
+        </select>
+        <br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <input type=button value="    查询一览    " onclick="get_general_POST()"/>
+        <br><br>
+        <HR>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;明细
+        <br><br>
+        学院：
+        <select id="id_academy" name="academy">
+            <option value="" selected="selected">------------------------------------------</option>
+            
+            <option value="01">航空学院</option>
+            <option value="02">航天学院</option>
+            <option value="03">航海学院</option>
+            <option value="04">材料学院</option>
+            <option value="05">机电学院</option>
+            <option value="06">力学与土木建筑学院</option>
+            <option value="07">动力与能源学院</option>
+            <option value="08">电子信息学院</option>
+            <option value="09">自动化学院</option>
+            <option value="10">计算机学院</option>
+            <option value="12">管理学院</option>
+            <option value="13">公共政策与管理学院</option>
+            <option value="14">软件学院</option>
+            <option value="15">生命学院</option>
+            <option value="16">外国语学院</option>
+            <option value="17">教育实验学院</option>
+            <option value="18">西北工业大学伦敦玛丽女王大学工程学院</option>
+            <option value="19">马克思主义学院</option>
+            <option value="22">微电子学院</option>
+            <option value="23">网络空间安全学院</option>
+            <option value="24">民航学院</option>
+            <option value="25">生态环境学院</option>
+            <option value="26">数学与统计学院</option>
+            <option value="27">物理科学与技术学院</option>
+            <option value="28">化学与化工学院</option>
+            <option value="29">柔性电子研究院</option>
+            <option value="30">无人系统技术研究院</option>
+            <option value="31">医学研究院</option>
+        </select>
+        <br>
+        学历：
+        <select id="id_xueli" name="xueli">
+            <option value="" selected="selected">------------------------------------------</option>
+            
+            <option value="0101" class="01">本科</option>
+            <option value="0102" class="01">硕士</option>
+            <option value="0103" class="01">博士</option>
+            
+            <option value="0201" class="02">本科</option>
+            <option value="0202" class="02">硕士</option>
+            <option value="0203" class="02">博士</option>
+            
+            <option value="0301" class="03">本科</option>
+            <option value="0302" class="03">硕士</option>
+            <option value="0303" class="03">博士</option>
+            
+            <option value="0401" class="04">本科</option>
+            <option value="0402" class="04">硕士</option>
+            <option value="0403" class="04">博士</option>
+            
+            <option value="0501" class="05">本科</option>
+            <option value="0502" class="05">硕士</option>
+            <option value="0503" class="05">博士</option>
+            
+            <option value="0601" class="06">本科</option>
+            <option value="0602" class="06">硕士</option>
+            <option value="0603" class="06">博士</option>
+            
+            <option value="0701" class="07">本科</option>
+            <option value="0702" class="07">硕士</option>
+            <option value="0703" class="07">博士</option>
+            
+            <option value="0801" class="08">本科</option>
+            <option value="0802" class="08">硕士</option>
+            <option value="0803" class="08">博士</option>
+            
+            <option value="0901" class="09">本科</option>
+            <option value="0902" class="09">硕士</option>
+            <option value="0903" class="09">博士</option>
+            
+            <option value="1001" class="10">本科</option>
+            <option value="1002" class="10">硕士</option>
+            <option value="1003" class="10">博士</option>
+            
+            <option value="1201" class="12">本科</option>
+            <option value="1202" class="12">硕士</option>
+            
+            <option value="1302" class="13">硕士</option>
+            
+            <option value="1401" class="14">本科</option>
+            <option value="1402" class="14">硕士</option>
+            <option value="1403" class="14">博士</option>
+            
+            <option value="1502" class="15">硕士</option>
+            <option value="1503" class="15">博士</option>
+            
+            <option value="1601" class="16">本科</option>
+            <option value="1602" class="16">硕士</option>
+            
+            <option value="1701" class="17">本科</option>
+            
+            <option value="1801" class="18">本科</option>
+            
+            <option value="1903" class="19">博士</option>
+            
+            <option value="2201" class="22">本科</option>
+            <option value="2202" class="22">硕士</option>
+            
+            <option value="2301" class="23">本科</option>
+            <option value="2302" class="23">硕士</option>
+            <option value="2303" class="23">博士</option>
+            
+            <option value="2401" class="24">本科</option>
+            <option value="2402" class="24">硕士</option>
+            <option value="2403" class="24">博士</option>
+            
+            <option value="2502" class="25">硕士</option>
+            
+            <option value="2601" class="26">本科</option>
+            <option value="2602" class="26">硕士</option>
+            <option value="2603" class="26">博士</option>
+            
+            <option value="2701" class="27">本科</option>
+            <option value="2702" class="27">硕士</option>
+            <option value="2703" class="27">博士</option>
+            
+            <option value="2802" class="28">硕士</option>
+            <option value="2803" class="28">博士</option>
+            
+            <option value="2902" class="29">硕士</option>
+            <option value="2903" class="29">博士</option>
+            
+            <option value="3002" class="30">硕士</option>
+            <option value="3003" class="30">博士</option>
+            
+            <option value="3102" class="31">硕士</option>
+
+        </select>
+        <br>
+        专业：
+        <select id="id_major" name="major">
+            <option value="" selected="selected">------------------------------------------</option>
+            
+            <!--01航空学院-->
+            <option value="010101" class="0101">航空航天工程(0114)</option>
+            <option value="010102" class="0101">飞行器控制与信息工程</option>
+            <option value="010103" class="0101">飞行器设计与工程</option>
+            
+            <option value="010201" class="0102">力学</option>
+            <option value="010202" class="0102">机械</option>
+            <option value="010203" class="0102">流体力学</option>
+            <option value="010204" class="0102">电子信息</option>
+            <option value="010205" class="0102">航空宇航科学与技术</option>
+            <option value="010206" class="0102">航空工程</option>
+            <option value="010207" class="0102">航空航天安全工程</option>
+            <option value="010208" class="0102">飞行器设计</option>
+            
+            <option value="010301" class="0103">先进制造</option>
+            <option value="010302" class="0103">固体力学</option>
+            <option value="010303" class="0103">飞行器设计</option>
+            
+            <!--02航天学院-->
+            <option value="020101" class="0201">探测制导与控制技术</option>
+            <option value="020102" class="0201">航空航天工程</option>
+            <option value="020103" class="0201">飞行器动力工程</option>
+            <option value="020104" class="0201">飞行器控制与信息工程</option>
+            <option value="020105" class="0201">飞行器设计与工程</option>
+            
+            <option value="020201" class="0202">兵器科学与技术</option>
+            <option value="020202" class="0202">导航、制导与控制</option>
+            <option value="020203" class="0202">控制工程</option>
+            <option value="020204" class="0202">控制科学与工程</option>
+            <option value="020205" class="0202">机械</option>
+            <option value="020206" class="0202">电子信息</option>
+            <option value="020207" class="0202">能源动力</option>
+            <option value="020208" class="0202">航天工程</option>
+            <option value="020209" class="0202">航空宇航科学与技术</option>
+            
+            <option value="020301" class="0203">先进制造</option>
+            <option value="020302" class="0203">导航、制导与控制</option>
+            <option value="020303" class="0203">空间应用科学与工程</option>
+            <option value="020304" class="0203">航空宇航推进理论与工程</option>
+            <option value="020305" class="0203">飞行器设计</option>
+            
+            <!--03航海学院-->
+            <option value="030101" class="0301">信息工程</option>
+            <option value="030102" class="0301">水声工程</option>
+            <option value="030103" class="0301">船舶与海洋工程</option>
+            
+            <option value="030201" class="0302">信号与信息处理</option>
+            <option value="030202" class="0302">兵器科学与技术</option>
+            <option value="030203" class="0302">声学</option>
+            <option value="030204" class="0302">控制工程</option>
+            <option value="030205" class="0302">控制科学与工程</option>
+            <option value="030206" class="0302">机械</option>
+            <option value="030207" class="0302">水声工程</option>
+            <option value="030208" class="0302">热能工程</option>
+            <option value="030209" class="0302">电子信息</option>
+            <option value="030210" class="0302">网络空间安全</option>
+            <option value="030211" class="0302">船舶与海洋工程</option>
+            <option value="030212" class="0302">船舶与海洋结构物设计制造</option>
+            <option value="030213" class="0302">资源与环境</option>
+            <option value="030214" class="0302">通信与信息系统</option>
+            
+            <option value="030301" class="0303">信息与通信工程</option>
+            <option value="030302" class="0303">水声工程</option>
+            <option value="030303" class="0303">电子与信息</option>
+            
+            <!--04材料学院-->
+            <option value="040101" class="0401">复合材料与工程</option>
+            <option value="040102" class="0401">材料成型及控制工程</option>
+            <option value="040103" class="0401">材料科学与工程</option>
+            
+            <option value="040201" class="0402">材料与化工</option>
+            <option value="040202" class="0402">材料加工工程</option>
+            <option value="040203" class="0402">材料学</option>
+            <option value="040204" class="0402">控制工程</option>
+            
+            <option value="040301" class="0403">先进制造</option>
+            <option value="040302" class="0403">材料加工工程</option>
+            <option value="040303" class="0403">材料学</option>
+            
+            <!--05机电学院-->
+            <option value="050101" class="0501">产品设计</option>
+            <option value="050102" class="0501">工业工程</option>
+            <option value="050103" class="0501">工业设计</option>
+            <option value="050104" class="0501">微机电系统工程</option>
+            <option value="050105" class="0501">机械电子工程</option>
+            <option value="050106" class="0501">机械设计制造及其自动化</option>
+            <option value="050107" class="0501">飞行器制造工程</option>
+            
+            <option value="050201" class="0502">工业工程</option>
+            <option value="050202" class="0502">工业设计</option>
+            <option value="050203" class="0502">微机电系统及纳米技术</option>
+            <option value="050204" class="0502">机械</option>
+            <option value="050205" class="0502">机械制造及其自动化</option>
+            <option value="050206" class="0502">机械工程</option>
+            <option value="050207" class="0502">机械电子工程</option>
+            <option value="050208" class="0502">机械设计及理论</option>
+            <option value="050209" class="0502">电子信息</option>
+            <option value="050210" class="0502">管理科学与工程</option>
+            <option value="050211" class="0502">航空宇航制造工程</option>
+            <option value="050212" class="0502">航空工程</option>
+            <option value="050213" class="0502">设计学</option>
+            <option value="050214" class="0502">车辆工程</option>
+
+            <option value="050301" class="0503">先进制造</option>
+            <option value="050302" class="0503">机械制造及其自动化</option>
+            <option value="050303" class="0503">机械电子工程</option>
+            <option value="050304" class="0503">机械设计及理论</option>
+            <option value="050305" class="0503">航空宇航制造工程</option>
+            <option value="050306" class="0503">车辆工程</option>
+            
+            <!--06力学与土木建筑学院-->
+            <option value="060101" class="0601">工程力学</option>
+            <option value="060102" class="0601">建筑学</option>
+            
+            <option value="060201" class="0602">一般力学与力学基础</option>
+            <option value="060202" class="0602">固体力学</option>
+            <option value="060203" class="0602">土木工程</option>
+            <option value="060204" class="0602">土木水利</option>
+            <option value="060205" class="0602">工程力学</option>
+            <option value="060206" class="0602">建筑设计及其理论</option>
+            <option value="060207" class="0602">机械</option>
+            <option value="060208" class="0602">能源动力</option>
+
+            <option value="060301" class="0603">先进制造</option>
+            <option value="060302" class="0603">力学</option>
+            
+            <!--07动力与能源学院-->
+            <option value="070101" class="0701">能源与动力工程</option>
+            <option value="070102" class="0701">飞行器动力工程</option>
+            
+            <option value="070201" class="0702">信号与信息处理</option>
+            <option value="070202" class="0702">动力工程</option>
+            <option value="070203" class="0702">动力机械及工程</option>
+            <option value="070204" class="0702">工程热物理</option>
+            <option value="070205" class="0702">控制工程</option>
+            <option value="070206" class="0702">控制科学与工程</option>
+            <option value="070207" class="0702">机械</option>
+            <option value="070208" class="0702">流体机械及工程</option>
+            <option value="070209" class="0702">热能工程</option>
+            <option value="070210" class="0702">电子信息</option>
+            <option value="070211" class="0702">能源动力</option>
+            <option value="070212" class="0702">航空宇航推进理论与工程</option>
+            <option value="070213" class="0702">航空工程</option>
+            <option value="070214" class="0702">风能和太阳能系统及工程</option>
+
+            <option value="070301" class="0703">先进制造</option>
+            <option value="070302" class="0703">航空宇航科学与技术</option>
+            
+            <!--08电子信息学院-->
+            <option value="080101" class="0801">探测制导与控制技术</option>
+            <option value="080102" class="0801">电子信息工程</option>
+            <option value="080103" class="0801">电子科学与技术</option>
+            <option value="080104" class="0801">电磁场与无线技术</option>
+            <option value="080105" class="0801">通信工程</option>
+            
+            <option value="080201" class="0802">信息与通信工程</option>
+            <option value="080202" class="0802">控制科学与工程</option>
+            <option value="080203" class="0802">电子信息</option>
+            <option value="080204" class="0802">电子科学与技术</option>
+            <option value="080205" class="0802">电气工程</option>
+
+            <option value="080301" class="0803">信息与通信工程</option>
+            <option value="080302" class="0803">电子与信息</option>
+            <option value="080303" class="0803">电子科学与技术</option>
+            
+            <!--09自动化学院-->
+            <option value="090101" class="0901">电气工程及其自动化</option>
+            <option value="090102" class="0901">自动化</option>
+            
+            <option value="090201" class="0902">交通运输</option>
+            <option value="090202" class="0902">交通运输工程</option>
+            <option value="090203" class="0902">控制工程</option>
+            <option value="090204" class="0902">控制科学与工程</option>
+            <option value="090205" class="0902">电子信息</option>
+            <option value="090206" class="0902">电气工程</option>
+            <option value="090207" class="0902">能源动力</option>
+
+            <option value="090301" class="0903">交通运输工程</option>
+            <option value="090302" class="0903">控制科学与工程</option>
+            <option value="090303" class="0903">电子与信息</option>
+            <option value="090304" class="0903">电气工程</option>
+                        
+            <!--10计算机学院-->
+            <option value="100101" class="1001">人工智能</option>
+            <option value="100102" class="1001">数据科学与大数据技术</option>
+            <option value="100103" class="1001">物联网工程</option>
+            <option value="100104" class="1001">计算机科学与技术</option>
+            
+            <option value="100201" class="1002">电子信息</option>
+            <option value="100202" class="1002">计算机技术</option>
+            <option value="100203" class="1002">计算机科学与技术</option>
+            <option value="100204" class="1002">软件工程</option>
+            <option value="100205" class="1002">集成电路工程</option>
+            
+            <option value="100301" class="1003">电子与信息</option>
+            <option value="100302" class="1003">计算机科学与技术</option>
+            
+            <!--12管理学院-->
+            <option value="120101" class="1201">工商管理</option>
+            
+            <option value="120201" class="1202">会计</option>
+            <option value="120202" class="1202">工业工程与管理</option>
+            <option value="120203" class="1202">工商管理</option>
+            <option value="120204" class="1202">工程管理</option>
+            <option value="120205" class="1202">管理科学与工程</option>
+            
+            <!--13公共政策与管理学院-->
+            <option value="130201" class="1302">公共管理</option>
+            
+            <!--14软件学院-->
+            <option value="140101" class="1401">软件工程</option>
+            
+            <option value="140201" class="1402">电子信息</option>
+            <option value="140202" class="1402">软件工程</option>
+
+            <option value="140301" class="1403">电子与信息</option>
+            
+            <!--15生命学院-->   
+            <option value="150201" class="1502">生物与医药</option>
+            <option value="150202" class="1502">生物医学工程</option>
+            <option value="150203" class="1502">生物学</option>
+
+            <option value="150301" class="1503">生物医学工程</option>
+            
+            <!--16外国语学院-->
+            <option value="160101" class="1601">德语</option>
+            <option value="160102" class="1601">英语</option>
+            
+            <option value="160201" class="1602">外国语言学及应用语言学</option>
+            <option value="160202" class="1602">英语口译</option>
+            <option value="160203" class="1602">英语笔译</option>
+            <option value="160204" class="1602">英语语言文学</option>
+            
+            <!--17教育实验学院-->
+            <option value="170101" class="1701">电子信息工程</option>
+            <option value="170102" class="1701">自动化</option>
+            <option value="170103" class="1701">计算机科学与技术</option>
+            <option value="170104" class="1701">飞行器制造工程</option>
+            <option value="170105" class="1701">飞行器动力工程</option>
+            <option value="170106" class="1701">飞行器控制与信息工程</option>
+            <option value="170107" class="1701">飞行器设计与工程</option>
+            <option value="170108" class="1701">高分子材料与工程</option>
+            
+            <!--18西北工业大学伦敦玛丽女王大学工程学院-->
+            <option value="180101" class="1801">材料科学与工程</option>
+            <option value="180102" class="1801">高分子材料与工程</option>
+            
+            <!--19马克思主义学院-->
+            <option value="190301" class="1903">思想政治教育</option>
+            
+            <!--22微电子学院-->
+            <option value="220101" class="2201">微电子科学与工程</option>
+            
+            <option value="220201" class="2202">电子信息</option>
+            <option value="220202" class="2202">电子科学与技术</option>
+            
+            <!--23网络空间安全学院-->
+            <option value="230101" class="2301">信息安全</option>
+            
+            <option value="230201" class="2302">电子信息</option>
+            <option value="230202" class="2302">网络与信息安全</option>
+            <option value="230203" class="2302">网络空间安全</option>
+
+            <option value="230301" class="2303">电子与信息</option>
+            <option value="230302" class="2303">网络空间安全</option>
+            
+            <!--24民航学院-->
+            <option value="240101" class="2401">飞行器控制与信息工程</option>
+            <option value="240102" class="2401">飞行器设计与工程</option>
+            
+            <option value="240201" class="2402">机械</option>
+            <option value="240202" class="2402">材料与化工</option>
+            <option value="240203" class="2402">材料学</option>
+            <option value="240204" class="2402">电子信息</option>
+            <option value="240205" class="2402">航空航天安全工程</option>
+            <option value="240206" class="2402">适航技术与管理</option>
+
+            <option value="240301" class="2403">先进制造</option>
+            <option value="240302" class="2403">载运工具运用工程</option>
+            
+            <!--25生态环境学院-->
+            <option value="250201" class="2502">生态学</option>
+            <option value="250202" class="2502">生物与医药</option>
+            
+            <!--26数学与统计学院-->
+            <option value="260101" class="2601">信息与计算科学</option>
+            <option value="260102" class="2601">数学与应用数学</option>
+            <option value="260103" class="2601">统计学</option>
+            
+            <option value="260201" class="2602">基础数学</option>
+            <option value="260202" class="2602">应用数学</option>
+            <option value="260203" class="2602">概率论与数理统计</option>
+            <option value="260204" class="2602">统计学</option>
+            <option value="260205" class="2602">计算数学</option>
+            <option value="260206" class="2602">运筹学与控制论</option>
+
+            <option value="260301" class="2603">数学</option>
+            
+            <!--27物理科学与技术学院-->
+            <option value="270101" class="2701">光电信息科学与工程</option>
+            <option value="270102" class="2701">应用物理学</option>
+            <option value="270103" class="2701">材料物理</option>
+            
+            <option value="270201" class="2702">光学</option>
+            <option value="270202" class="2702">光学工程</option>
+            <option value="270203" class="2702">凝聚态物理</option>
+            <option value="270204" class="2702">材料与化工</option>
+            <option value="270205" class="2702">材料物理与化学</option>
+            <option value="270206" class="2702">电子信息</option>
+
+            <option value="270301" class="2703">先进制造</option>
+            <option value="270302" class="2703">光学工程</option>
+            <option value="270303" class="2703">材料物理与化学</option>
+            <option value="270304" class="2703">物理学</option>
+            
+            <!--28化学与化工学院-->
+            <option value="280201" class="2802">化学工艺</option>
+            <option value="280202" class="2802">应用化学</option>
+            <option value="280203" class="2802">有机化学</option>
+            <option value="280204" class="2802">材料与化工</option>
+            <option value="280205" class="2802">材料学</option>
+            <option value="280206" class="2802">材料工程</option>
+            <option value="280207" class="2802">物理化学</option>
+            <option value="280208" class="2802">高分子化学与物理</option>
+
+            <option value="280301" class="2803">先进制造</option>
+            <option value="280302" class="2803">化学</option>
+            <option value="280303" class="2803">材料学</option>
+            
+            <!--29柔性电子研究院-->
+            <option value="290201" class="2902">有机化学</option>
+            <option value="290202" class="2902">材料与化工</option>
+            <option value="290203" class="2902">材料学</option>
+            <option value="290204" class="2902">材料工程</option>
+            <option value="290205" class="2902">电子信息</option>
+            <option value="290206" class="2902">高分子化学与物理</option>
+
+            <option value="290301" class="2903">材料学</option>
+            
+            <!--30无人系统技术研究院-->
+            <option value="300201" class="3002">人工智能</option>
+            <option value="300202" class="3002">智能无人系统科学与技术</option>
+            <option value="300203" class="3002">机械</option>
+            <option value="300204" class="3002">电子信息</option>
+
+            <option value="300301" class="3003">先进制造</option>
+            <option value="300302" class="3003">电子与信息</option>
+            
+            <!--31医学研究院-->
+            <option value="310201" class="3102">生物与医药</option>
+
+        </select>
+        <br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <input type=button value="    查询明细    " onclick="get_detail_POST()"/>
+        <br><br>
+        </div>
+    </body>
+    <script>
+        $(document).ready(function() {
+          $("#id_xueli").chained("#id_academy");
+          $("#id_major").chained("#id_xueli");
+        });
+        
+        //发送POST请求跳转到指定页面
+        function httpPost(URL, PARAMS) {
+            var temp = document.createElement("form");
+            temp.action = URL;
+            temp.method = "post";
+            temp.target = "_blank";
+            temp.style.display = "none";
+
+            for (var x in PARAMS) {
+                var opt = document.createElement("textarea");
+                opt.name = x;
+                opt.value = PARAMS[x];
+                temp.appendChild(opt);
+            }
+
+            document.body.appendChild(temp);
+            temp.submit();
+
+            return temp;
+        }
+        
+        function get_detail_POST() {
+            if ($("#id_academy option:selected").val() != "" && $("#id_xueli option:selected").val() != "" && $("#id_major option:selected").val() != "") {
+                var academy=$("#id_academy option:selected").text();
+                var xueli=$("#id_xueli option:selected").text();
+                var major=$("#id_major option:selected").text();
+                var url='https://jobszqy.nwpu.edu.cn/report/frameset';
+                
+                var params = {
+                    "__report": "job4majorOneNew.rptdesign",
+                    "__toolbar": "false",
+                    "__svg": "true",
+                    "academy": academy,
+                    "xueli": xueli,
+                    "major": major
+                };
+
+                httpPost(url, params);
+            }else {
+                alert("表单为空");
+            }
+        }
+        
+        function get_general_POST(){
+            if ($("#id_year option:selected").val() != "" && $("#id_school option:selected").val()) {
+                var year=$("#id_year option:selected").text();
+                var school=$("#id_school option:selected").text();
+                var url='https://jobszqy.nwpu.edu.cn/report/frameset';
+                var params = {
+                    "__report": "jobTypePercent4University.rptdesign",
+                    "__toolbar": "false",
+                    "biyeNian": year,
+                    "student_type": school,
+                };
+
+                httpPost(url, params);
+            }else {
+                alert("表单为空");
+            }
+        }
+    </script>
+</html>
